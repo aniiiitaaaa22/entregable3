@@ -1,72 +1,3 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>510</width>
-    <height>480</height>
-   </rect>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>510</width>
-    <height>480</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>510</width>
-    <height>480</height>
-   </size>
-  </property>
-  <property name="mouseTracking">
-   <bool>false</bool>
-  </property>
-  <property name="windowTitle">
-   <string>Form</string>
-  </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>Logosímbolo-vertical.jpg</normaloff>Logosímbolo-vertical.jpg</iconset>
-  </property>
-  <property name="autoFillBackground">
-   <bool>false</bool>
-  </property>
-  <widget class="QLabel" name="img">
-   <property name="geometry">
-    <rect>
-     <x>5</x>
-     <y>12</y>
-     <width>500</width>
-     <height>400</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>Logosímbolo-vertical.jpg</pixmap>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>430</y>
-     <width>491</width>
-     <height>41</height>
-    </rect>
-   </property>
-  </widget>
- </widget>
- <resources/>
- <connections/>
-</ui>
-=======
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Form</class>
@@ -103,6 +34,12 @@
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QFrame {
+border-radius:10px;
+background-image: url(icon/3f.jpg)
+}</string>
   </property>
   <widget class="QLabel" name="img">
    <property name="geometry">
@@ -279,6 +216,29 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>250</y>
+     <width>251</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame {
+	image: url(:/fon/icon/HK2.png);
+	border-radius:10px;
+	background-image: url(icon/3f.jpg);
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+  </widget>
   <zorder>img</zorder>
   <zorder>comboBox</zorder>
   <zorder>slider</zorder>
@@ -286,8 +246,10 @@
   <zorder>label</zorder>
   <zorder>lista</zorder>
   <zorder>line</zorder>
+  <zorder>frame</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="fon.qrc"/>
+ </resources>
  <connections/>
 </ui>
->>>>>>> 80b97d98510193c60c281a3ecfccd4c633db6514

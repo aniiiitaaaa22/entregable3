@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="fon">
+    <file>icon/1c.jpg</file>
+    <file>icon/2h.jpg</file>
+    <file>icon/3f.jpg</file>
+    <file>icon/hellokitty1.png</file>
+    <file>icon/HK2.png</file>
+  </qresource>
+</RCC>

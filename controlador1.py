@@ -10,44 +10,6 @@ import os
 import sys                    ##### llama init(VistaImagen(), Modelo()) para que haga mi parte en el __init__
 import pydicom
 from messagebox import msg_error
-class WelcomeScreenController:
-    def __init__(self, view, widget):
-        self.view = view
-        self.widget = widget
-        # Conectar señales y slots
-        self.view.pushButton.clicked.connect(self.gui_login)
-
-    def gui_login(self):
-        name = self.view.lineEdit.text()
-        password = self.view.lineEdit_2.text()
-
-        if len(name) == 0 or len(password) == 0:
-            msg_error("Error", "No hay datos")
-        elif name == "medicoAnalitico" and password == "bio12345":
-            self.window_access()
-        else:
-            msg_error("Error", "Los datos no coinciden")
-
-    def window_access(self):
-        gui_access = Controlador_imagen(VistaImagen() , Modelo())
-#        self.widget.addWidget(gui_access)
-#        self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
-    
-
-class GuiAccessController:
-    def __init__(self, model, view, widget):
-        self.model = model
-        self.view = view
-        self.widget = widget
-
-        # Conectar señales y slots
-        self.view.pushButton.clicked.connect(self.regresar_login)
-
-    def regresar_login(self):
-        welcome = WelcomeScreenView()
-        self.widget.addWidget(welcome)
-        self.widget.setCurrentIndex(self.widget.currentIndex() + 1)    
-   
 
 class Controlador_imagen:
     def __init__(self, vista, modelo):
@@ -56,10 +18,21 @@ class Controlador_imagen:
         self.vista_imagen.comboBox.addItems(self.modelo.obtener_carpetas_dicom())
         self.vista_imagen.comboBox.currentIndexChanged.connect(self.actualizar_imagen)
         self.vista_imagen.slider.valueChanged.connect(self.actualizar_imagen)
-        self.vista_imagen.salir.clicked.connect(GuiAccessController().regresar_login()) ####################  salir para ir a login
+        self.vista_imagen.salir.clicked.connect(self.regresar_login()) ####################  salir para ir a login
         self.actualizar_imagen()
         self.vista_imagen.show()
 
+    def regresar_login(self):
+        widget = QtWidgets.QStackedWidget()
+        gui_access_controller = GuiAccessController(GuiAccessView, widget)
+        welcome_controller = WelcomeScreenController(WelcomeScreenView, gui_access_controller, widget)
+        widget.addWidget(welcome_controller.view)
+        widget.move(400, 80)
+        widget.setFixedHeight(500)
+        widget.setFixedWidth(500)
+        widget.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        widget.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+        widget.show()
     def actualizar_imagen(self):
         carpeta_seleccionada = self.vista_imagen.comboBox.currentText()
         archivos_dicom = self.modelo.obtener_archivos_dicom(carpeta_seleccionada)
@@ -104,21 +77,77 @@ class Controlador_imagen:
             self.vista_imagen.lista.setItem(num_filas, 0, QTableWidgetItem(etiqueta))
             self.vista_imagen.lista.setItem(num_filas, 1, QTableWidgetItem(str(valor)))
 
-if __name__ == '__main__':
-    
-    app = QApplication(sys.argv)
-    #controlador = Controlador_imagen(VistaImagen() , Modelo())
-    app.exec_()
+class WelcomeScreenController:
+    def __init__(self, view, gui_access_controller, widget):
+        self.view = view()
+        self.gui_access_controller = gui_access_controller
+        self.widget = widget
 
-    welcome = WelcomeScreenController(WelcomeScreenView, GuiAccessController)
+        # Conectar señales y slots
+        self.view.pushButton.clicked.connect(self.gui_login)
+
+    def gui_login(self):
+        name = self.view.lineEdit.text()
+        password = self.view.lineEdit_2.text()
+
+        if len(name) == 0 or len(password) == 0:
+            msg_error("Error", "No hay datos")
+        elif name == "medicoAnalitico" and password == "bio12345":
+            Controlador_imagen(VistaImagen(), Modelo())
+        else:
+            msg_error("Error", "Los datos no coinciden")
+
+#    def window_access(self):
+#        self.gui_access_controller.show_gui_access()
+
+
+
+
+class GuiAccessController:
+    def __init__(self,view, widget):
+
+        self.view = view()
+        self.widget = widget
+
+        # Conectar señales y slots
+        self.view.pushButton.clicked.connect(self.regresar_login)
+
+    def regresar_login(self):
+        welcome = WelcomeScreenController(WelcomeScreenView, self, self.widget)
+        gui_access_controller = GuiAccessController(GuiAccessView, widget)
+        welcome_controller = WelcomeScreenController(WelcomeScreenView, gui_access_controller, widget)
+        widget = QtWidgets.QStackedWidget()
+        widget.addWidget(welcome_controller.view)
+        widget.move(400, 80)
+        widget.setFixedHeight(500)
+        widget.setFixedWidth(500)
+        widget.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        widget.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+        widget.show()
+#        self.widget.addWidget(welcome.view)
+#        self.widget.setCurrentIndex(self.widget.currentIndex() + 1)  
+
+#    def show_gui_access(self):
+#        controlador_imagen = Controlador_imagen()
+#        self.widget.addWidget(controlador_imagen.vista_imagen)
+#        self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+
     widget = QtWidgets.QStackedWidget()
-    widget.addWidget(welcome)
+
+    gui_access_controller = GuiAccessController(GuiAccessView, widget)
+    welcome_controller = WelcomeScreenController(WelcomeScreenView, gui_access_controller, widget)
+
+    widget.addWidget(welcome_controller.view)
     widget.move(400, 80)
     widget.setFixedHeight(500)
     widget.setFixedWidth(500)
     widget.setWindowFlags(QtCore.Qt.FramelessWindowHint)
     widget.setAttribute(QtCore.Qt.WA_TranslucentBackground)
     widget.show()
+
     try:
         sys.exit(app.exec_())
     except:
