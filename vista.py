@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QLabel, QComboBox, QSlider, QPushButton, QTableWidget, QTableWidgetItem
 from PyQt5.QtCore import Qt
 from PyQt5.uic import loadUi
-class Vista(QMainWindow):
+class VistaImagen(QMainWindow):
     def __init__(self):
         super().__init__()
         self.init_ui()

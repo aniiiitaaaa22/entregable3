@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QApplication
-from vista import Vista
+from vista import VistaImagen
 from modelo import Modelo
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QImage
@@ -9,29 +9,29 @@ import sys
 import pydicom
 class Controlador:
     def __init__(self, vista, modelo):
-        self.vista = vista
+        self.vista_imagen = vista
         self.modelo = modelo
-        self.vista.comboBox.addItems(self.modelo.obtener_carpetas_dicom())
-        self.vista.comboBox.currentIndexChanged.connect(self.actualizar_imagen)
-        self.vista.slider.valueChanged.connect(self.actualizar_imagen)
-#        self.vista.salir.clicked.connect() ####################  salir para ir a login
+        self.vista_imagen.comboBox.addItems(self.modelo.obtener_carpetas_dicom())
+        self.vista_imagen.comboBox.currentIndexChanged.connect(self.actualizar_imagen)
+        self.vista_imagen.slider.valueChanged.connect(self.actualizar_imagen)
+#        self.vista_imagen.salir.clicked.connect() ####################  salir para ir a login
 
         self.actualizar_imagen()
 
-        self.vista.show()
+        self.vista_imagen.show()
 
     def actualizar_imagen(self):
-        carpeta_seleccionada = self.vista.comboBox.currentText()
+        carpeta_seleccionada = self.vista_imagen.comboBox.currentText()
         archivos_dicom = self.modelo.obtener_archivos_dicom(carpeta_seleccionada)
-        indice_imagen = self.vista.slider.value()
+        indice_imagen = self.vista_imagen.slider.value()
 
         if 0 <= indice_imagen < len(archivos_dicom):
             ruta_dicom = os.path.join(carpeta_seleccionada, archivos_dicom[indice_imagen])
             ds = pydicom.dcmread(ruta_dicom)
             imagen_array = self.normalize_pixels(ds.pixel_array)
             q_image = self.array_to_pixmap(imagen_array)
-            self.vista.img.setPixmap(q_image)
-            self.vista.slider.setRange(0, len(archivos_dicom) - 1)
+            self.vista_imagen.img.setPixmap(q_image)
+            self.vista_imagen.slider.setRange(0, len(archivos_dicom) - 1)
 
             info_paciente = self.modelo.obtener_info_paciente(ds)
             self.actualizar_info_paciente(info_paciente)
@@ -53,20 +53,20 @@ class Controlador:
             raise ValueError("Formato de imagen no compatible")
 
         pixmap = QPixmap.fromImage(q_image)
-        pixmap = pixmap.scaled(self.vista.img.width(), self.vista.img.height(), Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        pixmap = pixmap.scaled(self.vista_imagen.img.width(), self.vista_imagen.img.height(), Qt.KeepAspectRatio, Qt.SmoothTransformation)
         return pixmap
 
     def actualizar_info_paciente(self, info_paciente):
-        self.vista.lista.setRowCount(0)
+        self.vista_imagen.lista.setRowCount(0)
         for etiqueta, valor in info_paciente.items():
-            num_filas = self.vista.lista.rowCount()
-            self.vista.lista.insertRow(num_filas)
-            self.vista.lista.setItem(num_filas, 0, QTableWidgetItem(etiqueta))
-            self.vista.lista.setItem(num_filas, 1, QTableWidgetItem(str(valor)))
+            num_filas = self.vista_imagen.lista.rowCount()
+            self.vista_imagen.lista.insertRow(num_filas)
+            self.vista_imagen.lista.setItem(num_filas, 0, QTableWidgetItem(etiqueta))
+            self.vista_imagen.lista.setItem(num_filas, 1, QTableWidgetItem(str(valor)))
 
 if __name__ == '__main__':
     app = QApplication([])
     modelo = Modelo()
-    vista = Vista()
+    vista = VistaImagen()
     controlador = Controlador(vista, modelo)
     app.exec_()
