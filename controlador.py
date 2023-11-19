@@ -5,19 +5,22 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtWidgets import QTableWidgetItem
 import os
-import sys
+import sys                    ##### llama init(VistaImagen(), Modelo()) para que haga mi parte en el __init__
 import pydicom
 class Controlador:
-    def __init__(self, vista, modelo):
+    def __init__(self):
+        ##################################aqui va lo tuyo de login
+        pass
+
+
+    def init(self, vista, modelo):
         self.vista_imagen = vista
         self.modelo = modelo
         self.vista_imagen.comboBox.addItems(self.modelo.obtener_carpetas_dicom())
         self.vista_imagen.comboBox.currentIndexChanged.connect(self.actualizar_imagen)
         self.vista_imagen.slider.valueChanged.connect(self.actualizar_imagen)
 #        self.vista_imagen.salir.clicked.connect() ####################  salir para ir a login
-
         self.actualizar_imagen()
-
         self.vista_imagen.show()
 
     def actualizar_imagen(self):
@@ -68,5 +71,6 @@ if __name__ == '__main__':
     app = QApplication([])
     modelo = Modelo()
     vista = VistaImagen()
-    controlador = Controlador(vista, modelo)
+    controlador = Controlador()
+    controlador.init(vista, modelo)   #llama _init() para que haga la parte de mi funcion
     app.exec_()
