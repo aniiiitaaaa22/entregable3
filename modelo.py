@@ -13,8 +13,8 @@ class Modelo:
     def obtener_info_paciente(self, ds):
         return {
             "Imagen Numero": str(ds.InstanceNumber),
-            "Nombre del paciente": ds.PatientName,
             "ID del paciente": ds.PatientID,
+            "nombre del paciente": ds.PatientName,
             "Sexo del paciente": ds.PatientSex,
             "Tipo de estudio": ds.Modality
         }
