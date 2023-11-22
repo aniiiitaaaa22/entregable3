@@ -56,7 +56,7 @@ class Controlador_imagen:
             q_image = QImage(imagen_array.data, width, height, width, QImage.Format_Grayscale8)
         elif len(imagen_array.shape) == 3:
             height, width, channel = imagen_array.shape
-            q_image = QImage(imagen_array.data, width, height, 3 * width, QImage.Format_RGB888)
+            q_image = QImage(imagen_array.data, width, height, 3 * width, QImage.Format_Indexed8)
         else:
             raise ValueError("Formato de imagen no compatible")
 
@@ -72,6 +72,7 @@ class Controlador_imagen:
             self.vista_imagen.lista.insertRow(num_filas)
             self.vista_imagen.lista.setItem(num_filas, 0, QTableWidgetItem(etiqueta))
             self.vista_imagen.lista.setItem(num_filas, 1, QTableWidgetItem(str(valor)))
+            self.vista_imagen.lista.resizeColumnsToContents()
 
 class WelcomeScreenController:
     def __init__(self, view, gui_access_controller, widget):
