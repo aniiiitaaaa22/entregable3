@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="HK">
+    <file>icon/HK2.png</file>
+  </qresource>
+</RCC>

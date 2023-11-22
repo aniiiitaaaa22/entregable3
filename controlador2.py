@@ -8,8 +8,8 @@ import pydicom
 from messagebox import msg_error
 from vista import VistaImagen, WelcomeScreenView, GuiAccessView
 from modelo import Modelo
+from fon import *
 
-# Variable global para el QStackedWidget
 widget = None
 
 class Controlador_imagen:
@@ -19,29 +19,27 @@ class Controlador_imagen:
         self.vista_imagen.comboBox.addItems(self.modelo.obtener_carpetas_dicom())
         self.vista_imagen.comboBox.currentIndexChanged.connect(self.actualizar_imagen)
         self.vista_imagen.slider.valueChanged.connect(self.actualizar_imagen)
-        self.vista_imagen.salir.clicked.connect(self.regresar_login)  # Conectar el botón "Salir"
+        self.vista_imagen.salir.clicked.connect(self.regresar_login)  ### Conectar el botón "Salir"
         self.actualizar_imagen()
         self.vista_imagen.show()
 
     def regresar_login(self):
-        self.vista_imagen.close()
-        widget.removeWidget(widget.currentWidget())  # Eliminar la ventana actual del QStackedWidget
-        welcome = WelcomeScreenController(WelcomeScreenView, None, widget)
-        widget.addWidget(welcome.view)
-        widget.setCurrentIndex(widget.currentIndex() + 1)
+        self.vista_imagen.hide()
+        welcome_controller.widget.show()
 
     def actualizar_imagen(self):
         carpeta_seleccionada = self.vista_imagen.comboBox.currentText()
         archivos_dicom = self.modelo.obtener_archivos_dicom(carpeta_seleccionada)
+        slices = [pydicom.dcmread(f'{carpeta_seleccionada}/{archivo}') for archivo in archivos_dicom]
+        slices.sort(key=lambda x: int(x.ImagePositionPatient[2]))
         indice_imagen = self.vista_imagen.slider.value()
 
-        if 0 <= indice_imagen < len(archivos_dicom):
-            ruta_dicom = os.path.join(carpeta_seleccionada, archivos_dicom[indice_imagen])
-            ds = pydicom.dcmread(ruta_dicom)
+        if 0 <= indice_imagen < len(slices):
+            ds = slices[indice_imagen]
             imagen_array = self.normalize_pixels(ds.pixel_array)
             q_image = self.array_to_pixmap(imagen_array)
             self.vista_imagen.img.setPixmap(q_image)
-            self.vista_imagen.slider.setRange(0, len(archivos_dicom) - 1)
+            self.vista_imagen.slider.setRange(0, len(slices) - 1)
 
             info_paciente = self.modelo.obtener_info_paciente(ds)
             self.actualizar_info_paciente(info_paciente)
@@ -80,8 +78,6 @@ class WelcomeScreenController:
         self.view = view()
         self.gui_access_controller = gui_access_controller
         self.widget = widget
-
-        # Conectar señales y slots
         self.view.pushButton.clicked.connect(self.gui_login)
 
     def gui_login(self):
@@ -91,13 +87,10 @@ class WelcomeScreenController:
         if len(name) == 0 or len(password) == 0:
             msg_error("Error", "No hay datos")
         elif name == "medicoAnalitico" and password == "bio12345":
-            # Mostrar la vista del Controlador_imagen solo si las credenciales son correctas
             global controlador_imagen
             controlador_imagen = Controlador_imagen(VistaImagen(), Modelo())
             controlador_imagen.vista_imagen.show()
-
-            # Cerrar la ventana de bienvenida después de abrir el visor DICOM
-            self.widget.close()
+            self.widget.hide()
         else:
             msg_error("Error", "Los datos no coinciden")
 
@@ -105,18 +98,13 @@ class GuiAccessController:
     def __init__(self, view, widget):
         self.view = view()
         self.widget = widget
-
-        # Conectar señales y slots
         self.view.pushButton.clicked.connect(self.regresar_login)
 
     def regresar_login(self):
+        self.hide()
         global controlador_imagen
-        if controlador_imagen:
-            controlador_imagen.regresar_login()
-        else:
-            welcome = WelcomeScreenController(WelcomeScreenView, None, self.widget)
-            self.widget.addWidget(welcome.view)
-            self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
+        controlador_imagen = Controlador_imagen(VistaImagen(), Modelo())
+        controlador_imagen.vista_imagen.show()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

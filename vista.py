@@ -13,13 +13,10 @@ class WelcomeScreenView(QMainWindow):
     def __init__(self):
         super(WelcomeScreenView, self).__init__()
         loadUi("login.ui", self)
-    # Puedes agregar métodos de la vista según sea necesario.
-
 class GuiAccessView(QMainWindow):
     def __init__(self):
         super(GuiAccessView, self).__init__()
         loadUi("correct.ui", self)
-    # Puedes agregar métodos de la vista según sea necesario.
 class VistaImagen(QMainWindow):
     def __init__(self):
         super().__init__()
