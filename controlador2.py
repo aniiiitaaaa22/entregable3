@@ -9,6 +9,7 @@ from messagebox import msg_error
 from vista import VistaImagen, WelcomeScreenView, GuiAccessView
 from modelo import Modelo
 from fon import *
+import numpy as np
 
 widget = None
 
@@ -45,9 +46,9 @@ class Controlador_imagen:
             self.actualizar_info_paciente(info_paciente)
 
     def normalize_pixels(self, imagen_array):
-        min_pixel = imagen_array.min()
-        max_pixel = imagen_array.max()
-        normalized_array = 255 * (imagen_array - min_pixel) / (max_pixel - min_pixel)
+        min_percentile = np.percentile(imagen_array, 1)
+        max_percentile = np.percentile(imagen_array, 99)
+        normalized_array = 255 * (imagen_array - min_percentile) / (max_percentile - min_percentile)
         return normalized_array.astype('uint8')
 
     def array_to_pixmap(self, imagen_array):
