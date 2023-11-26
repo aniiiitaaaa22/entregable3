@@ -9,8 +9,13 @@ from messagebox import msg_error
 from vista import VistaImagen, WelcomeScreenView, GuiAccessView
 from modelo import Modelo
 from fon import *
+<<<<<<< HEAD
 import json
 import numpy as np
+=======
+import numpy as np
+
+>>>>>>> 826eb15991adc84c0d155a4eebef4ffae53ea195
 widget = None
 
 class Controlador_imagen:
