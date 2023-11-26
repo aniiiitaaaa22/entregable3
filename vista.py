@@ -34,3 +34,4 @@ class VistaImagen(QMainWindow):
         self.setCentralWidget(central_widget)
 
         self.setWindowTitle('Visor DICOM')
+ 

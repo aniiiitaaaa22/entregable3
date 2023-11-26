@@ -9,7 +9,8 @@ from messagebox import msg_error
 from vista import VistaImagen, WelcomeScreenView, GuiAccessView
 from modelo import Modelo
 from fon import *
-
+import json
+import numpy as np
 widget = None
 
 class Controlador_imagen:
@@ -45,10 +46,16 @@ class Controlador_imagen:
             self.actualizar_info_paciente(info_paciente)
 
     def normalize_pixels(self, imagen_array):
-        min_pixel = imagen_array.min()
-        max_pixel = imagen_array.max()
-        normalized_array = 255 * (imagen_array - min_pixel) / (max_pixel - min_pixel)
+        min_percentile = np.percentile(imagen_array, 1)
+        max_percentile = np.percentile(imagen_array, 99)
+        normalized_array = 255 * (imagen_array - min_percentile) / (max_percentile - min_percentile)
         return normalized_array.astype('uint8')
+
+    # def normalize_pixels(self, imagen_array):
+        # min_pixel = imagen_array.min()
+        # max_pixel = imagen_array.max()
+        # normalized_array = 255 * (imagen_array - min_pixel) / (max_pixel - min_pixel)
+        # return normalized_array.astype('uint8')
 
     def array_to_pixmap(self, imagen_array):
         if len(imagen_array.shape) == 2:
@@ -62,7 +69,7 @@ class Controlador_imagen:
 
         pixmap = QPixmap.fromImage(q_image)
         pixmap = pixmap.scaled(self.vista_imagen.img.width(), self.vista_imagen.img.height(),
-                               Qt.KeepAspectRatio, Qt.SmoothTransformation)
+                            Qt.KeepAspectRatio, Qt.SmoothTransformation)
         return pixmap
 
     def actualizar_info_paciente(self, info_paciente):
@@ -87,13 +94,32 @@ class WelcomeScreenController:
 
         if len(name) == 0 or len(password) == 0:
             msg_error("Error", "No hay datos")
-        elif name == "medicoAnalitico" and password == "bio12345":
-            global controlador_imagen
-            controlador_imagen = Controlador_imagen(VistaImagen(), Modelo())
-            controlador_imagen.vista_imagen.show()
-            self.widget.hide()
         else:
-            msg_error("Error", "Los datos no coinciden")
+            # Cargar datos de usuarios desde el archivo JSON
+            try:
+                with open('usu.json', 'r') as file:
+                    user_data = json.load(file)
+
+                # Verificar las credenciales
+                if name == user_data["usuario"] and password == user_data["password"]:
+                    global controlador_imagen
+                    controlador_imagen = Controlador_imagen(VistaImagen(), Modelo())
+                    controlador_imagen.vista_imagen.show()
+                    self.widget.hide()
+                else:
+                    msg_error("Error", "Los datos no coinciden")
+
+            except FileNotFoundError:
+                msg_error("Error", "Archivo 'usu.json' no encontrado")
+            except json.JSONDecodeError:
+                msg_error("Error", "Error al decodificar el archivo JSON")
+        # elif name == "medicoAnalitico" and password == "bio12345":
+        #     global controlador_imagen
+        #     controlador_imagen = Controlador_imagen(VistaImagen(), Modelo())
+        #     controlador_imagen.vista_imagen.show()
+        #     self.widget.hide()
+        # else:
+        #     msg_error("Error", "Los datos no coinciden")
 
 class GuiAccessController:
     def __init__(self, view, widget):

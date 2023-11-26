@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="menu">
+    <file>icon/hellokitty1.png</file>
+    <file>icon/HK2.png</file>
+    <file>icon/HK3.png</file>
+    <file>icon/HK4.png</file>
+    <file>icon/HK5.png</file>
+    <file>icon/Keroppi.png</file>
+    <file>icon/KM1.png</file>
+    <file>icon/kuromi1.png</file>
+  </qresource>
+</RCC>

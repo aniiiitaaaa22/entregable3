@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="fi">
+    <file>icon/1c.jpg</file>
+    <file>icon/2h.jpg</file>
+    <file>icon/3d6a28868ecb134e8730dc79fd7bdb41.png</file>
+    <file>icon/3f.jpg</file>
+    <file>icon/a.png</file>
+    <file>icon/b.png</file>
+    <file>icon/c.png</file>
+    <file>icon/hellokitty1.png</file>
+    <file>icon/HK2.png</file>
+    <file>icon/kuromi1.png</file>
+    <file>icon/logomed.png</file>
+  </qresource>
+</RCC>
