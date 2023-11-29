@@ -126,6 +126,7 @@ class WelcomeScreenController:
         self.gui_access_controller = gui_access_controller
         self.widget = widget
         self.view.pushButton.clicked.connect(self.gui_login)
+        self.view.exitButton.clicked.connect(self.exit_application)
 
     def gui_login(self):
         name = self.view.lineEdit.text()
@@ -152,6 +153,9 @@ class WelcomeScreenController:
                 msg_error("Error", "Archivo 'usu.json' no encontrado")
             except json.JSONDecodeError:
                 msg_error("Error", "Error al decodificar el archivo JSON")
+    
+    def exit_application(self):
+        sys.exit()
         # elif name == "medicoAnalitico" and password == "bio12345":
         #     global controlador_imagen
         #     controlador_imagen = Controlador_imagen(VistaImagen(), Modelo())

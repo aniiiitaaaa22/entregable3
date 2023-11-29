@@ -191,6 +191,42 @@ border-image: url(:/icoon/icon/kuromi1.png);</string>
       <string/>
      </property>
     </widget>
+    <widget class="QPushButton" name="exitButton">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>10</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>15</width>
+       <height>15</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#exitButton{
+background-color: rgb(177, 100, 182);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 20px;
+}
+QPushButton#exitButton:hover{
+background-color: rgba(177, 100, 182,120);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 20px;
+}
+QPushButton#exitButton:pressed{
+background-color: rgba(177, 100, 182,140);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 20px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Salir</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
