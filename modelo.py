@@ -10,7 +10,7 @@ class db_mysql:
             database = "SanrioMedical")
         self.cursor = self.db.cursor()
         self.subida()
-        self.cursor.close() #
+        self.cursor.close()
         self.db.close()
     def subida(self):
         consulta = "SELECT * FROM `info paciente`"
@@ -45,8 +45,6 @@ class Modelo_dcm:
         }
 
 class Biosenal:
-    #constructor que recibe los datos, si no se entregan por defectos estaran 
-    #vacios
     def __init__(self,data = None):
         if data is not None:
             self.asignarDatos(data)
@@ -56,19 +54,14 @@ class Biosenal:
             self.puntos = 0
     
     def asignarDatos(self,data):
-        self.data = data # Matriz 2D
-        self.canales = data.shape[0] #8 canales 
-        self.puntos = data.shape[1]  #360000 puntos  
-    #esta funcion nos permitira movernos en el tiempo xmin y xman
+        self.data = data
+        self.canales = data.shape[0]
+        self.puntos = data.shape[1]
     def devolver_segmento(self, x_min, x_max):
         if x_min >= x_max:
             return None
         return self.data[:,x_min:x_max]
-    #esta funcion nos permitira cambiar la amplitud de la senal
-
     def escalar_senal(self,x_min,x_max, escala):
-        #el slicing no genera copia de los datos sino que devuelve un segmento de los originales
-        #para no modificar el original se debe hacer una copia
         if x_min >= x_max:
             return None
         copia_data = self.data[:,x_min:x_max].copy()
