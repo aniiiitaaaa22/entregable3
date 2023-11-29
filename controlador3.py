@@ -6,10 +6,9 @@ import os
 import sys
 import pydicom
 from messagebox import msg_error
-from vista import VistaImagen, WelcomeScreenView, GuiAccessView, MenuVista
+from vista import VistaImagen, WelcomeScreenView, GuiAccessView
 from modelo import Modelo
 from fon import *
-from mi import *
 
 import json
 import numpy as np
@@ -108,9 +107,9 @@ class WelcomeScreenController:
 
                 # Verificar las credenciales
                 if name == user_data["usuario"] and password == user_data["password"]:
-                    global MenuControlleri
-                    MenuControlleri = MenuController(MenuVista(), self.widget)
-                    MenuControlleri.viewM.show()
+                    global controlador_imagen
+                    controlador_imagen = Controlador_imagen(VistaImagen(), Modelo())
+                    controlador_imagen.vista_imagen.show()
                     self.widget.hide()
                 else:
                     msg_error("Error", "Los datos no coinciden")
@@ -126,22 +125,7 @@ class WelcomeScreenController:
         #     self.widget.hide()
         # else:
         #     msg_error("Error", "Los datos no coinciden")
-class MenuController:
-    def __init__(self, viewM,  widgetM):
-        self.viewM = viewM
-        self.widgetM = widgetM
-        self.viewM.pushButton.clicked.connect(self.login)        
-    def login(self):
-        self.viewM.hide()
-        welcome_controller.widget.show()
-    def DCM(self):
-        pass
-    def JPG(self):
-        pass
-    def CSV(self):
-        pass
-    def MAT(self):
-        pass
+
 class GuiAccessController:
     def __init__(self, view, widget):
         self.view = view()

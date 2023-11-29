@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>414</width>
+    <height>641</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>391</width>
+      <height>611</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#pushButton{
+background-color: rgba(0,0,0,100);
+
+border-radius: 15px;
+
+}
+
+QPushButton#pushButton:hover{
+background-color: rgba(0,0,0,120);
+border-radius: 15px;
+
+}
+
+QPushButton#pushButton:pressed{
+background-color: rgba(0,0,0,140);
+border-radius: 15px;
+
+}</string>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>130</y>
+       <width>351</width>
+       <height>481</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(210, 145, 188,250);
+border-bottom-left-radius: 40px;
+border-bottom-right-radius: 40px;
+border-top-left-radius: 40px;
+border-top-right-radius: 40px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>60</y>
+       <width>141</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/icoon/icon/logomed.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_4">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>170</y>
+       <width>235</width>
+       <height>421</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_7">
+      <item>
+       <widget class="QPushButton" name="DCM">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#DCM{
+background-color: rgb(177, 100, 182);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QPushButton#DCM:hover{
+background-color: rgba(177, 100, 182,120);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QPushButton#DCM:pressed{
+background-color: rgba(177, 100, 182,140);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}</string>
+        </property>
+        <property name="text">
+         <string>ARCHIVOS DCM</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="JPG">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#JPG{
+background-color: rgb(177, 100, 182);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QPushButton#JPG:hover{
+background-color: rgba(177, 100, 182,120);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QPushButton#JPG:pressed{
+background-color: rgba(177, 100, 182,140);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}</string>
+        </property>
+        <property name="text">
+         <string>ARCHIVOS JPG/PNG</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="CSV">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#CSV{
+background-color: rgb(177, 100, 182);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QPushButton#CSV:hover{
+background-color: rgba(177, 100, 182,120);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QPushButton#CSV:pressed{
+background-color: rgba(177, 100, 182,140);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}</string>
+        </property>
+        <property name="text">
+         <string>ARCHIVOS CSV</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="MAT">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#MAT{
+background-color: rgb(177, 100, 182);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QPushButton#MAT:hover{
+background-color: rgba(177, 100, 182,120);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QPushButton#MAT:pressed{
+background-color: rgba(177, 100, 182,140);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}</string>
+        </property>
+        <property name="text">
+         <string>ARCHIVOS MAT</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#pushButton{
+background-color: rgb(177, 100, 182);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QPushButton#pushButton:hover{
+background-color: rgba(177, 100, 182,120);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QPushButton#pushButton:pressed{
+background-color: rgba(177, 100, 182,140);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}</string>
+        </property>
+        <property name="text">
+         <string>SALIR</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>170</y>
+       <width>81</width>
+       <height>421</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/mi/icon/M1.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_6">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/mi/icon/c1.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/mi/icon/HK6.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_11">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/mi/icon/P1.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/mi/icon/K1.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QLabel" name="label_12">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>10</y>
+       <width>231</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 20pt &quot;Comic Sans MS&quot;;</string>
+     </property>
+     <property name="text">
+      <string>SanrioMedical</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources>
+  <include location="res.qrc"/>
+  <include location="icon.qrc"/>
+  <include location="mi.qrc"/>
+ </resources>
+ <connections/>
+</ui>

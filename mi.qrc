@@ -1,10 +1,5 @@
 <RCC>
-  <qresource prefix="icoon">
-    <file>icon/3d6a28868ecb134e8730dc79fd7bdb41.png</file>
-    <file>icon/hellokitty1.png</file>
-    <file>icon/HK2.png</file>
-    <file>icon/kuromi1.png</file>
-    <file>icon/logomed.png</file>
+  <qresource prefix="mi">
     <file>icon/Ke1.png</file>
     <file>icon/TS1.png</file>
     <file>icon/P3.png</file>

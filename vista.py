@@ -4,6 +4,7 @@ from PyQt5.uic import loadUi
 import sys
 from res import *
 from icon import *
+from mi import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget, QApplication, QMainWindow
 from messagebox import msg_error
@@ -13,6 +14,15 @@ class WelcomeScreenView(QMainWindow):
     def __init__(self):
         super(WelcomeScreenView, self).__init__()
         loadUi("login.ui", self)
+class MenuVista(QMainWindow):
+    def __init__(self):
+        super(MenuVista, self).__init__()
+        loadUi("men.ui", self)
+
+# class Menu(QMainWindow):
+#     def __init__(self):
+#         super(Menu, self).__init__()
+#         loadUi("login - copia.ui", self)
 class GuiAccessView(QMainWindow):
     def __init__(self):
         super(GuiAccessView, self).__init__()
