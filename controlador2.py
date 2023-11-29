@@ -163,14 +163,16 @@ class MenuController:
     def __init__(self, viewM,  widgetM):
         self.viewM = viewM
         self.widgetM = widgetM
-        self.viewM.pushButton.clicked.connect(self.login)        
+        self.controlador_imagen = controlador_imagen
+        self.viewM.pushButton.clicked.connect(self.login)
+        self.viewM.pushButton.clicked.connect(self.DCM)   #CAMBIARLE EL BOTON     
     def login(self):
         self.viewM.hide()
         welcome_controller.widget.show()
     def DCM(self):
         self.viewM.hide()                     ######################
         global controlador_imagen             ######################
-        controlador_imagen.vista_imagen.show()######################
+        self.controlador_imagen.vista_imagen.show()######################
 
     def JPG(self):
         pass
@@ -199,7 +201,7 @@ if __name__ == '__main__':
 
     gui_access_controller = GuiAccessController(GuiAccessView, widget)
     welcome_controller = WelcomeScreenController(WelcomeScreenView, gui_access_controller, widget)
-    controlador_imagen = Controlador_imagen_dcm(vista=VistaImagen_dcm() , modelo=Modelo_dcm())
+    controlador_imagen = Controlador_imagen_dcm(vista=VistaImagen_dcm(), modelo=Modelo_dcm())
     widget.addWidget(welcome_controller.view)
     widget.move(400, 80)
     widget.setFixedHeight(500)
