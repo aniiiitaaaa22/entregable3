@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>914</width>
+    <width>1060</width>
     <height>540</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>914</width>
+    <width>1060</width>
     <height>540</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>914</width>
+    <width>1060</width>
     <height>540</height>
    </size>
   </property>
@@ -42,8 +42,8 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>-10</y>
-     <width>921</width>
+     <y>0</y>
+     <width>1071</width>
      <height>541</height>
     </rect>
    </property>
@@ -76,9 +76,29 @@ background-image: url(icon/c.png)
     </property>
     <property name="font">
      <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
+      <family>Comic Sans MS</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox#comboBox{
+background-color: rgb(177, 100, 182);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QComboBox#comboBox:hover{
+background-color: rgba(177, 100, 182,120);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QComboBox#comboBox:pressed{
+background-color: rgba(177, 100, 182,140);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}</string>
     </property>
    </widget>
    <widget class="QTableWidget" name="lista">
@@ -86,19 +106,19 @@ background-image: url(icon/c.png)
      <rect>
       <x>620</x>
       <y>50</y>
-      <width>291</width>
-      <height>161</height>
+      <width>420</width>
+      <height>221</height>
      </rect>
     </property>
     <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
     <property name="maximumSize">
      <size>
-      <width>300</width>
+      <width>420</width>
       <height>421</height>
      </size>
     </property>
@@ -199,11 +219,28 @@ background-image: url(icon/c.png)
     <property name="font">
      <font>
       <family>Comic Sans MS</family>
-      <pointsize>10</pointsize>
+      <pointsize>14</pointsize>
       <weight>50</weight>
       <italic>false</italic>
       <bold>false</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#salir{
+background-color: rgb(177, 100, 182);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QPushButton#salir:hover{
+background-color: rgba(177, 100, 182,120);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QPushButton#salir:pressed{
+background-color: rgba(177, 100, 182,140);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}</string>
     </property>
     <property name="text">
      <string>salir</string>
@@ -265,10 +302,10 @@ background-image: url(icon/c.png)
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>300</y>
-      <width>211</width>
-      <height>221</height>
+      <x>670</x>
+      <y>260</y>
+      <width>241</width>
+      <height>231</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -305,6 +342,23 @@ background-image: url(icon/c.png)
       <height>31</height>
      </size>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox#tipo_corte{
+background-color: rgb(177, 100, 182);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QComboBox#tipo_corte:hover{
+background-color: rgba(177, 100, 182,120);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}
+QComboBox#tipo_corte:pressed{
+background-color: rgba(177, 100, 182,140);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}</string>
+    </property>
     <property name="currentText">
      <string>Axial</string>
     </property>
@@ -327,7 +381,6 @@ background-image: url(icon/c.png)
   </widget>
  </widget>
  <resources>
-  <include location="fon.qrc"/>
   <include location="HK.qrc"/>
   <include location="fond.qrc"/>
  </resources>

@@ -1,10 +1,14 @@
 import os
+import cv2 
+import numpy as np
+import pandas as pd
 import mysql.connector
+
 class db_mysql:
     def __init__(self , data):
         self.datos = data
         self.db = mysql.connector.connect(
-            host = "127.0.0.1",
+            host = "%.%.%.%",
             user= "root",
             password = "",
             database = "SanrioMedical")
@@ -66,3 +70,64 @@ class Biosenal:
             return None
         copia_data = self.data[:,x_min:x_max].copy()
         return copia_data*escala
+
+
+class OperacionesMorfologicas:
+    def __init__(self):
+        self.imagen_original = None
+        self.imagen_procesada = None
+
+    def cargar_imagen(self, ruta):
+        self.imagen_original = cv2.imread(ruta)
+        if self.imagen_original is None:
+            raise FileNotFoundError(f"No se puede cargar la imagen desde {ruta}")
+
+    def convertir_a_escala_de_grises(self):
+        self.imagen_original = cv2.cvtColor(self.imagen_original, cv2.COLOR_BGR2GRAY)
+
+    def erosion(self, kernel_size=5, iterations=1):
+        kernel = np.ones((kernel_size, kernel_size), np.uint8)
+        self.imagen_procesada = cv2.erode(self.imagen_original, kernel, iterations=iterations)
+
+    def dilatacion(self, kernel_size=5, iterations=1):
+        kernel = np.ones((kernel_size, kernel_size), np.uint8)
+        self.imagen_procesada = cv2.dilate(self.imagen_original, kernel, iterations=iterations)
+
+    def apertura(self, kernel_size=5):
+        kernel = np.ones((kernel_size, kernel_size), np.uint8)
+        self.imagen_procesada = cv2.morphologyEx(self.imagen_original, cv2.MORPH_OPEN, kernel)
+
+    def cierre(self, kernel_size=5):
+        kernel = np.ones((kernel_size, kernel_size), np.uint8)
+        self.imagen_procesada = cv2.morphologyEx(self.imagen_original, cv2.MORPH_CLOSE, kernel)
+
+    def deteccion_contornos(self):
+        if len(self.imagen_original.shape) == 3:
+            imagen_gris = cv2.cvtColor(self.imagen_original, cv2.COLOR_BGR2GRAY)
+        else:
+            imagen_gris = self.imagen_original
+
+        _, umbral = cv2.threshold(imagen_gris, 127, 255, 0)
+        contornos, _ = cv2.findContours(umbral, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        imagen_contornos = self.imagen_original.copy()
+        cv2.drawContours(imagen_contornos, contornos, -1, (0, 255, 0), 2)
+
+        self.imagen_procesada = imagen_contornos
+
+class Modelo:
+    def __init__(self):
+        self.df = None
+        self.columna_seleccionada = None
+
+    def cargar_csv(self, archivo_csv):
+        self.df = pd.read_csv(archivo_csv)
+
+    def obtener_columnas(self):
+        return self.df.columns.tolist()
+
+    def aplicar_funcion_seno(self, columna):
+        self.df[columna] = np.sin(self.df[columna])
+
+    def muestreo_aleatorio(self, n=10):
+        return self.df.sample(n=n)

@@ -50,6 +50,13 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QComboBox#llave{
+background-color: rgb(177, 100, 182);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}</string>
+   </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -79,6 +86,13 @@
      <width>75</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#salir{
+background-color: rgb(177, 100, 182);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}</string>
    </property>
    <property name="text">
     <string>volver</string>
@@ -112,6 +126,13 @@
      <width>131</width>
      <height>22</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QComboBox#modo_grafica{
+background-color: rgb(177, 100, 182);
+font: 8pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}</string>
    </property>
    <item>
     <property name="text">
@@ -158,6 +179,13 @@
      <width>101</width>
      <height>23</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#mostrar{
+background-color: rgb(177, 100, 182);
+font: 14pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}</string>
    </property>
    <property name="text">
     <string>Mostrar</string>
@@ -210,6 +238,13 @@
      <width>75</width>
      <height>23</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#boton_cargar{
+background-color: rgb(177, 100, 182);
+font: 8pt &quot;Comic Sans MS&quot;;
+border-radius: 15px;
+}</string>
    </property>
    <property name="text">
     <string>Cargar señal</string>
